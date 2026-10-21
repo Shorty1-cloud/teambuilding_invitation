@@ -86,11 +86,36 @@
     .notation p { margin: 0 0 6px; }
     #contact { text-align: center; background: var(--card); border-radius: 16px; padding: 40px 20px; }
     footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 40px; }
+    [hidden] { display: none !important; }
+    #gate { min-height: calc(100vh - 112px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; gap: 12px; }
+    #gate .piece { font-size: 5rem; }
+    #gate h1 { margin: 0; max-width: 760px; }
+    #gate form { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+    #gate input { font: inherit; padding: 12px 18px; border-radius: 999px; border: 2px solid var(--fg); background: var(--bg); color: var(--fg); min-width: 260px; }
+    #gate button { font: inherit; border: 0; cursor: pointer; }
+    #gate-msg { min-height: 3.2em; max-width: 560px; color: var(--muted); margin: 0; }
+    .shake { animation: shake .4s; }
+    @keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+    @media (prefers-reduced-motion: reduce) { .shake { animation: none; } .piece { transition: none; } }
   </style>
 </head>
 <body>
   <div class="board" aria-hidden="true"></div>
 
+  <div id="gate">
+    <div class="piece" role="img" aria-label="Chess knight">&#9822;</div>
+    <div class="eyebrow">Security check &middot; Level: Grandmaster</div>
+    <h1>Halt! Who goes there?</h1>
+    <p class="lead">Only a true chess mind may enter. So, Jirka (or a very clever impostor):<br>
+      <strong>which piece moves in an L-shape, jumps over everybody, and still arrives at the party late?</strong></p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="text" aria-label="Your answer" placeholder="Your answer..." required>
+      <button class="btn" type="submit">Make your move</button>
+    </form>
+    <p id="gate-msg" role="status"></p>
+  </div>
+
+  <div id="invite" hidden>
   <header>
     <div class="piece" id="piece" role="img" aria-label="Chess knight" title="Click me">&#9822;</div>
     <div class="eyebrow">Zebra company presents</div>
@@ -150,9 +175,50 @@
 
   <footer>&copy; 2026 Zebra &middot; See you in Brno, Jirka. Checkmate on boredom!</footer>
   <div class="board" aria-hidden="true"></div>
+  </div>
 
   <script>
     (function () {
+      var gate = document.getElementById('gate');
+      var invite = document.getElementById('invite');
+      var msg = document.getElementById('gate-msg');
+      var input = document.getElementById('gate-input');
+      var form = document.getElementById('gate-form');
+      var misses = 0;
+      var jokes = {
+        pawn: 'A pawn? Bold. Pawns only go forward, and you are clearly going in circles.',
+        queen: 'The Queen does what she wants, but she cannot jump. Try again, Your Majesty.',
+        king: 'The King moves one square at a time. We would be here until Thursday.',
+        rook: 'A rook walks in straight lines. Jirka has never walked in a straight line in his life.',
+        bishop: 'A bishop? Wrong church. Think of something with a mane.',
+        zebra: 'Correct species, wrong game. Nice try, though. You are on the right team.',
+        e4: 'Solid opening, but this is not a move, it is a question.'
+      };
+      var generic = [
+        'Illegal move! The arbiter has been notified. The arbiter is a zebra.',
+        'Wrong. Your clock is ticking. (There is no clock. Or is there?)',
+        'Nope. Even a pawn would be embarrassed.',
+        'Still wrong. Hint: it has a horse head and zero regrets.',
+        'Hint #2: in Czech it is "jezdec" or "kůň". In English it rhymes with "night".'
+      ];
+      function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+      function open() { gate.hidden = true; invite.hidden = false; window.scrollTo(0, 0); }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var a = norm(input.value);
+        if (/\b(knight|night|horse|jezdec|kun|springer|nf3|nc6)\b/.test(a)) {
+          msg.textContent = 'Checkmate! Welcome, Jirka. The knight has landed.';
+          setTimeout(open, 900);
+          return;
+        }
+        msg.textContent = jokes[a] || generic[Math.min(misses, generic.length - 1)];
+        if (!jokes[a]) misses++;
+        input.classList.remove('shake');
+        void input.offsetWidth;
+        input.classList.add('shake');
+        input.select();
+      });
+
       var pieces = ['♞', '♟', '♝', '♜', '♛', '♚'];
       var names = ['Knight', 'Pawn', 'Bishop', 'Rook', 'Queen', 'King'];
       var i = 0;
