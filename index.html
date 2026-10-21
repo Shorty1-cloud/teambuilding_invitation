@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zebra Teambuilding 2027 – Lysice</title>
-  <meta name="description" content="You are invited to the Zebra company teambuilding on 21 October 2027 in Lysice">
+  <title>Zebra Teambuilding 2026 – Brno</title>
+  <meta name="description" content="You are invited to the Zebra company teambuilding on 21 October 2026 in Brno.">
   <style>
     :root {
       --bg: #ffffff;
@@ -115,15 +115,15 @@
     <div class="details">
       <div class="card">
         <h2>Date</h2>
-        <p><time datetime="2027-10-21">21 October 2027</time></p>
+        <p><time datetime="2026-10-21">21 October 2026</time></p>
       </div>
       <div class="card">
         <h2>Place</h2>
-        <p>Lysice<small>Blansko District, Czech Republic</small></p>
+        <p>Brno<small>Czech Republic</small></p>
       </div>
       <div class="card">
         <h2>Who</h2>
-        <p>Marek Kana's team</p>
+        <p>All Zebra colleagues</p>
       </div>
     </div>
 
@@ -148,7 +148,7 @@
     </section>
   </main>
 
-  <footer>&copy; 2027 Zebra &middot; See you in Lysice!</footer>
+  <footer>&copy; 2026 Zebra &middot; See you in Brno!</footer>
   <div class="stripes" aria-hidden="true"></div>
   </div>
 
@@ -158,12 +158,10 @@
       var invite = document.getElementById('invite');
       var msg = document.getElementById('gate-msg');
       function open() { gate.hidden = true; invite.hidden = false; window.scrollTo(0, 0); }
-      try { if (sessionStorage.getItem('knocked') === '1') open(); } catch (e) {}
       document.getElementById('gate-form').addEventListener('submit', function (e) {
         e.preventDefault();
         var words = document.getElementById('gate-input').value.toLowerCase().replace(/[^a-z]+/g, ' ').trim();
         if (words === 'penny penny penny') {
-          try { sessionStorage.setItem('knocked', '1'); } catch (err) {}
           open();
         } else {
           msg.textContent = 'Wrong. Knock three times and say her name three times.';
