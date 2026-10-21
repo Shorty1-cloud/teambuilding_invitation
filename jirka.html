@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jirka, Your Move – Zebra Teambuilding 2026</title>
+  <meta name="description" content="A personal invitation for Jirka to the Zebra teambuilding on 21 October 2026 in Brno.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #161616;
+      --muted: #5c5c5c;
+      --card: #f4f4f4;
+      --accent: #161616;
+      --accent-fg: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --fg: #f2f2f2;
+        --muted: #a8a8a8;
+        --card: #1e1e1e;
+        --accent: #f2f2f2;
+        --accent-fg: #121212;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .board {
+      height: 56px;
+      background:
+        conic-gradient(var(--fg) 25%, var(--bg) 0 50%, var(--fg) 0 75%, var(--bg) 0) 0 0 / 56px 56px;
+    }
+    header {
+      text-align: center;
+      padding: 64px 20px 48px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .piece { font-size: 4rem; line-height: 1; display: inline-block; transition: transform .4s; cursor: pointer; user-select: none; }
+    .piece:hover { transform: rotate(-20deg) translateY(-6px); }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      line-height: 1.1;
+      margin: 12px 0 20px;
+    }
+    .lead { font-size: 1.2rem; color: var(--muted); margin: 0 auto 32px; }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-fg);
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn:focus-visible, a:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+    main { max-width: 900px; margin: 0 auto; padding: 0 20px 64px; }
+    .details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card { background: var(--card); border-radius: 16px; padding: 24px; }
+    .card h2 { margin: 0 0 6px; font-size: .85rem; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); }
+    .card p { margin: 0; font-size: 1.3rem; font-weight: 600; }
+    .card small { display: block; margin-top: 4px; font-weight: 400; font-size: .95rem; color: var(--muted); }
+    section { margin-top: 56px; }
+    h3 { font-size: 1.6rem; margin: 0 0 12px; }
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 6px; }
+    .notation { font-family: ui-monospace, Consolas, monospace; background: var(--card); border-radius: 16px; padding: 20px 24px; }
+    .notation p { margin: 0 0 6px; }
+    #contact { text-align: center; background: var(--card); border-radius: 16px; padding: 40px 20px; }
+    footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 40px; }
+  </style>
+</head>
+<body>
+  <div class="board" aria-hidden="true"></div>
+
+  <header>
+    <div class="piece" id="piece" role="img" aria-label="Chess knight" title="Click me">&#9822;</div>
+    <div class="eyebrow">Zebra company presents</div>
+    <h1>Jirka, it's your move.</h1>
+    <p class="lead">Black, white, and a whole herd of zebras in between. You are invited to our Teambuilding. Bring your strangest ideas &ndash; they tend to be the best ones.</p>
+    <a class="btn" href="#contact">Questions? Contact us</a>
+  </header>
+
+  <main>
+    <div class="details">
+      <div class="card">
+        <h2>Date</h2>
+        <p><time datetime="2026-10-21">21 October 2026</time></p>
+      </div>
+      <div class="card">
+        <h2>Place</h2>
+        <p>Brno<small>Czech Republic</small></p>
+      </div>
+      <div class="card">
+        <h2>Your piece</h2>
+        <p>The Knight<small>Moves in unexpected ways. Naturally.</small></p>
+      </div>
+    </div>
+
+    <section>
+      <h3>The opening</h3>
+      <div class="notation">
+        <p>1. e4 &nbsp;&ndash; arrive in Brno on 21 October</p>
+        <p>1... e5 &nbsp;&ndash; meet the team</p>
+        <p>2. Nf3 &nbsp;&ndash; team activities and friendly competition</p>
+        <p>2... Nc6 &nbsp;&ndash; food, drinks, relaxed atmosphere</p>
+        <p>3. Bb5 &nbsp;&ndash; the rematch nobody asked for (probably chess)</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>What to expect</h3>
+      <ul>
+        <li>Team activities and friendly competition</li>
+        <li>Time to talk with colleagues from other departments</li>
+        <li>Food, drinks, and a relaxed atmosphere</li>
+        <li>An unofficial chess corner: bring your board, find your opponent</li>
+      </ul>
+      <p>Wear comfortable clothes and shoes. Detailed schedule and meeting point will be shared by e-mail. No draws accepted before dessert.</p>
+    </section>
+
+    <section id="contact">
+      <h3>Any questions?</h3>
+      <p>Contact the organizer:</p>
+      <p>
+        <strong>Organizer name</strong><br>
+        <a href="mailto:organizer@example.com">organizer@example.com</a><br>
+        <a href="tel:+420000000000">+420 000 000 000</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Zebra &middot; See you in Brno, Jirka. Checkmate on boredom!</footer>
+  <div class="board" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      var pieces = ['♞', '♟', '♝', '♜', '♛', '♚'];
+      var names = ['Knight', 'Pawn', 'Bishop', 'Rook', 'Queen', 'King'];
+      var i = 0;
+      var el = document.getElementById('piece');
+      el.addEventListener('click', function () {
+        i = (i + 1) % pieces.length;
+        el.textContent = pieces[i];
+        el.setAttribute('aria-label', 'Chess ' + names[i].toLowerCase());
+      });
+    })();
+  </script>
+</body>
+</html>
