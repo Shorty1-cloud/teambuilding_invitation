@@ -80,11 +80,30 @@
     li { margin-bottom: 6px; }
     #contact { text-align: center; background: var(--card); border-radius: 16px; padding: 40px 20px; }
     footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 0 20px 40px; }
+    [hidden] { display: none !important; }
+    #gate { min-height: calc(100vh - 28px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; gap: 12px; }
+    #gate h1 { margin: 0; }
+    #gate form { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+    #gate input { font: inherit; padding: 12px 18px; border-radius: 999px; border: 2px solid var(--fg); background: var(--bg); color: var(--fg); min-width: 260px; }
+    #gate button { font: inherit; border: 0; cursor: pointer; }
+    #gate-msg { min-height: 1.6em; color: var(--muted); margin: 0; }
   </style>
 </head>
 <body>
   <div class="stripes" aria-hidden="true"></div>
 
+  <div id="gate">
+    <div class="eyebrow">Private invitation</div>
+    <h1>Knock, knock, knock&hellip;</h1>
+    <p class="lead">This invitation is for Marek Kana's team only. Say the magic words, the Sheldon way.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="text" aria-label="Magic words" placeholder="Who's there?" required>
+      <button class="btn" type="submit">Knock</button>
+    </form>
+    <p id="gate-msg" role="status"></p>
+  </div>
+
+  <div id="invite" hidden>
   <header>
     <div class="eyebrow">Zebra company presents</div>
     <h1>You're invited to our Teambuilding</h1>
@@ -104,7 +123,7 @@
       </div>
       <div class="card">
         <h2>Who</h2>
-        <p>All Zebra colleagues</p>
+        <p>Marek Kana's team</p>
       </div>
     </div>
 
@@ -131,5 +150,26 @@
 
   <footer>&copy; 2026 Zebra &middot; See you in Štěchov!</footer>
   <div class="stripes" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    (function () {
+      var gate = document.getElementById('gate');
+      var invite = document.getElementById('invite');
+      var msg = document.getElementById('gate-msg');
+      function open() { gate.hidden = true; invite.hidden = false; window.scrollTo(0, 0); }
+      try { if (sessionStorage.getItem('knocked') === '1') open(); } catch (e) {}
+      document.getElementById('gate-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var words = document.getElementById('gate-input').value.toLowerCase().replace(/[^a-z]+/g, ' ').trim();
+        if (words === 'penny penny penny') {
+          try { sessionStorage.setItem('knocked', '1'); } catch (err) {}
+          open();
+        } else {
+          msg.textContent = 'Wrong. Knock three times and say her name three times.';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
